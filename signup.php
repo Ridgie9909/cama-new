@@ -1,54 +1,30 @@
-<?php
-// session_start();
-
-require './config/connection.php';
-
-if (isset($_POST['signup'])){
-    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-    // $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-
-    $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username";
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->bindValue(':username', $username);
-    
-    $stmt->execute();
-
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if($row['num'] > 0){
-        die('That username already exists!');
-    }
-
-    $passwordHash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
-
-    $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->bindValue(':username', $username);
-    $stmt->bindValue(':password', $passwordHash);
-
-    $result = $stmt->execute();
-
-    if($results){
-        echo "Welcome to Camagru, please login in.";
-    }
-}
-?>
-
 <!DOCTYPE html>
-    <head>
-    </head>
-    <body>
-    <h1>Sign Up</h1>
-        <form action="signup.php" method="post">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Password</label>
-            <input type="text" id="password" name="password"><br>
-            <input type="submit" name="signup" value="signup"></button>
-            </form>
-    </body>
-            </html>
- 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>V-Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+</head>
+<body>
+
+    <h1>Hello guest welcome to camagru</h1>
+
+        <h3>Sign up here</h3>
+            <p>Begin sharing your WeThinkCode memories today</p>
+
+            <form action="./verification/insert.php" method="post">
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="" />
+                <label for="email">Email:</label>
+                <input type="text" name="email" value="" />
+                <label for="password">Password:</label>
+                <input type="password" name="password" value="" />
+                <br>
+                <br>
+                <input type="submit" value="Sign up" />
+            </form> 
+</body>   
+
+</html>

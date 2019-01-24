@@ -1,6 +1,6 @@
 <?php
-    $servername = "mysql:host=localhost";
-    $dbname = "camagru_";
-    $username = "root";
-    $password = "Megundube1";
+     define('dbhost', 'localhost');
+     define('dbuser', 'root');
+     define('dbpass', 'Megundube1');
+     define('dbname', 'camagru_');
 ?>

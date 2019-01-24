@@ -1,13 +1,12 @@
 <?php
 
-require './database.php';
+require 'database.php';
 
-try{
-    $conn = new PDO("mysql:host=$servername;dbname=camagru_", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Successfully connected to database";
+try {
+    $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
 }
-catch(PDOException $e){
-    echo "Failed to connect: " . $e->getMessage();
+catch(PDOException $e) {
+    echo $e->getMessage();
 }
 ?>

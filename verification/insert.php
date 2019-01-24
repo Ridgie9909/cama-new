@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require '../config/database.php';
+
         if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['password']) && !empty($_POST['password'])){
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -10,10 +12,6 @@
             }
         }
 
-        define('dbhost', 'localhost');
-        define('dbuser', 'root');
-        define('dbpass', 'Megundube1');
-        define('dbname', 'registrations');
         $hash = md5( rand(0,1000) );
         
         try {
@@ -21,24 +19,25 @@
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $query = "INSERT INTO users (username, password, email, hash) VALUES('$name', '$password', '$email', '$hash')";
             $stmt = $connect->exec($query);
-
+            $to = $email;
+            $subject = 'Camagru verification';
+            $message = 'Thanks for signing up!
+            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+            
+            Username: '.$name.'
+            
+            
+            
+            Please click this link to activate your account:
+            http://localhost:8080/verification/verify.php?email='.$email.'&hash='.$hash.'';  
+            
+            $headers = 'From:noreply@Camagru_staff.com' . "\r\n"; 
+            mail($to, $subject, $message, $headers); 
+            
         }
         catch(PDOException $e) {
             echo $e->getMessage();
         }
-
-        $to = $email;
-        $subject = 'Camagru verification';
-        $message = 'Thanks for signing up!
-        Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-        
-        Username: '.$name.'
-        Password: '.$password.'
-        
-        
-        Please click this link to activate your account:
-        http://www.yourwebsite.com/verify.php?email='.$email.'&hash='.$hash.'
-        ';  
-        $headers = 'From:noreply@Camagru_staff.com' . "\r\n"; 
-        mail($to, $subject, $message, $headers); 
+    echo ('<script>window.location.href="../login.php";</script>');    
     ?>
+    
