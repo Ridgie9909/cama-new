@@ -15,16 +15,19 @@
             <p>Begin sharing your WeThinkCode memories today</p>
 
             <form action="./verification/insert.php" method="post">
-                <label for="name">Name:</label>
-                <input type="text" name="name" value="" />
+                <label for="name" >Name:</label>
+                <input type="text" name="name" value="" required />
                 <label for="email">Email:</label>
-                <input type="text" name="email" value="" />
+                <input type="email" name="email" value=""  required/>
                 <label for="password">Password:</label>
-                <input type="password" name="password" value="" />
+                <input type="password" name="password" value="" required/>
                 <br>
                 <br>
                 <input type="submit" value="Sign up" />
             </form> 
+
+            <br>
+            <p>if you already have a camgru account login <b><a href="login.php">here</a></b></p>
 </body>   
 
 </html>

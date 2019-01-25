@@ -2,12 +2,15 @@
     session_start();
     require '../config/database.php';
 
-        if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['password']) && !empty($_POST['password'])){
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = md5($_POST['password']);
-
-            if(isset($message)){
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo "123";
+    }
+    if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['password']) && !empty($_POST['password'])){
+        $name = $_POST['name'];
+        $password = md5($_POST['password']);
+        $email = $_POST['email'];
+        
+        if(isset($message)){
                 echo $message;
             }
         }
@@ -29,7 +32,7 @@
             
             
             Please click this link to activate your account:
-            http://localhost:8080/verification/verify.php?email='.$email.'&hash='.$hash.'';  
+            http://localhost:8080/cama-new/verification/verify.php?email='.$email.'&hash='.$hash.'';  
             
             $headers = 'From:noreply@Camagru_staff.com' . "\r\n"; 
             mail($to, $subject, $message, $headers); 
