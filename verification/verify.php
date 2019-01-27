@@ -14,9 +14,6 @@
     if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
         $email = $_GET['email'];
         $hash = $_GET['hash'];
-        // if (rowCount($search) > 0){
-        //     echo 'found';
-        // }
         
         if ($search >= 0){
             
@@ -27,7 +24,6 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $search = "SELECT email, hash, active FROM users WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
             $act = "UPDATE users SET active='1' WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
-            // print_r($_GET);
             $stmt = $conn->exec($search, $act);
             $stmt = $conn->exec($act);
         }
@@ -35,9 +31,8 @@
             echo "Failed to connect: " . $e->getMessage() . " ";
         }
     }
-    // echo "BS";
-    // echo ($search); 
     ?>
     <h1>success</h1>
 </body>
 </html>
+

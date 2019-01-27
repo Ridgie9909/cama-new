@@ -15,7 +15,7 @@
             <p>Begin sharing your WeThinkCode memories today</p>
 
             <form action="./verification/insert.php" method="post">
-                <label for="name" >Name:</label>
+                <label for="name" >Username:</label>
                 <input type="text" name="name" value="" required />
                 <label for="email">Email:</label>
                 <input type="email" name="email" value=""  required/>
