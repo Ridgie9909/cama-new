@@ -14,24 +14,29 @@
     if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
         $email = $_GET['email'];
         $hash = $_GET['hash'];
-        $search = "SELECT email, hash, active FROM users WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
-        if (rowCount($search) > 0){
-            echo 'found';
-        }
+        // if (rowCount($search) > 0){
+        //     echo 'found';
+        // }
         
         if ($search >= 0){
-            $act = "UPDATE users SET active='1 WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
             
-            echo "Your account has been activated, you can now login.";
+            echo "Your account has been activated, you can now login.<br>";
         }
-        
-        $conn->prepare($search)->execute();
-        echo "$email";
-        echo "$hash";
+        try{
+            $conn = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $search = "SELECT email, hash, active FROM users WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
+            $act = "UPDATE users SET active='1' WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
+            // print_r($_GET);
+            $stmt = $conn->exec($search, $act);
+            $stmt = $conn->exec($act);
+        }
+        catch(PDOException $e){
+            echo "Failed to connect: " . $e->getMessage() . " ";
+        }
     }
     // echo "BS";
     // echo ($search); 
-    // print_r($_GET);
     ?>
     <h1>success</h1>
 </body>

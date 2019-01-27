@@ -27,7 +27,7 @@
             </form> 
 
             <br>
-            <p>if you already have a camgru account login <b><a href="login.php">here</a></b></p>
+            <p>If you already have a camgru account login <b><a href="login.php">here</a></b></p>
 </body>   
 
 </html>
