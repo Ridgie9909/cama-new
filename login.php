@@ -20,13 +20,13 @@
                     $stmt->execute();
                     $result = $stmt->get_result();
                     $user = $result->fetch_object();
+                    echo ('<script>window.location.href="./home.php";</script>');    
 
                     if (password_verify($_POST['password'], $user->password)){
                         $_SESSION['loggedin'] = $user->ID;
                     }
                 }
             }
-            echo ('<script>window.location.href="./home.php";</script>');    
 
         ?>
 <body>

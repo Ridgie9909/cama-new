@@ -9,24 +9,30 @@
 </head>
 <body>
 <?php
-    require_once '../config/connection.php';
+    require_once '../config/database.php';
     
-    print_r($_GET);
     if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
         $email = $_GET['email'];
         $hash = $_GET['hash'];
         $search = "SELECT email, hash, active FROM users WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
-        $match = $search;
-        echo $search;
-        if ($search >= 0){
-            echo "123";
+        if (rowCount($search) > 0){
+            echo 'found';
         }
-
+        
+        if ($search >= 0){
+            $act = "UPDATE users SET active='1 WHERE email='".$email."' AND hash='".$hash."' AND active='0'";
+            
+            echo "Your account has been activated, you can now login.";
+        }
+        
         $conn->prepare($search)->execute();
         echo "$email";
         echo "$hash";
     }
-?>
+    // echo "BS";
+    // echo ($search); 
+    // print_r($_GET);
+    ?>
     <h1>success</h1>
 </body>
 </html>
