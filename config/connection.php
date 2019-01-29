@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require './database.php';
 
 try {
     $conn = new PDO("mysql:host=".dbhost."; ", dbuser, dbpass);

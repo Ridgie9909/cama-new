@@ -33,6 +33,7 @@
     }
     ?>
     <h1>success</h1>
+    <p>To go to login page click <a href = "../login.php">here<a></p>
 </body>
 </html>
 

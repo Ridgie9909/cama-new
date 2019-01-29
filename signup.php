@@ -16,11 +16,11 @@
 
             <form action="./verification/insert.php" method="post">
                 <label for="name" >Username:</label>
-                <input type="text" name="name" value="" required />
+                <input type="text" name="name" value="" required pattern='.{5,100}'/>
                 <label for="email">Email:</label>
                 <input type="email" name="email" value=""  required/>
                 <label for="password">Password:</label>
-                <input type="password" name="password" value="" required/>
+                <input type="password" name="password" value="" required  autocomplete ="off"/>
                 <br>
                 <br>
                 <input type="submit" value="Sign up" />
