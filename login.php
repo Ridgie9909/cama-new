@@ -45,7 +45,6 @@
             
             // $stmt = $connect->execute($request);
         }
-        // echo $_SESSION['loggedin'];
     ?>
         
 <body>
