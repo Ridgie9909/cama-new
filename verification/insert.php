@@ -2,19 +2,9 @@
     session_start();
     require '../config/database.php';
 
-    // echo 123;
-    echo filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    if(isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']) && !empty($_POST['password']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-
-            if (strlen($password) < 6 && preg_match('`[A-Z]`',$password) && preg_match('`[a-z]`',$password) && preg_match('`[0-9]`',$password)){
-                $password = md5($_POST['password']);
-            }
-            else{
-                echo "dude the password needs to be better either needs a number or a special2";
-            }
-        
+    $name = $_POST['name'];
+    $password = md5($_POST['password']);
+    $email = $_POST['email'];
         
         $hash = md5( rand(0,1000) );
         
@@ -42,7 +32,7 @@
         catch(PDOException $e) {
             echo $e->getMessage();
         }
-    }
+    
     // echo ('<script>window.location.href="../login.php";</script>');    
     ?>
     

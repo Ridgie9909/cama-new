@@ -46,3 +46,19 @@ pattern='.{5,100}'
 else{
                 echo "dude the password needs to be better either needs a number or a special2";
             } 
+
+
+            <form action="./verification/insert.php" method="post" >
+                <label for="name" >Username:</label>
+                <input type="text" name="name" value="<?php echo $username; ?>" required pattern='.{5,100}'/>
+                <span><?php echo $username_err; ?></span>
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="<?php echo $email; ?>"  required/>
+                <span><?php echo $emailErr; ?></span>
+                <label for="password">Password:</label>
+                <input type="password" name="password" value="<?php echo $password; ?>" required  autocomplete ="off"/>
+                <span><?php echo $password_err; ?> </span>
+                <br>
+                <br>
+                <input type="submit" value="Sign up" />
+            </form>
