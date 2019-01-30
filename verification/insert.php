@@ -33,6 +33,6 @@
             echo $e->getMessage();
         }
     
-    // echo ('<script>window.location.href="../login.php";</script>');    
+    echo ('<script>window.location.href="../login.php";</script>');    
     ?>
     

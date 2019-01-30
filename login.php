@@ -22,31 +22,41 @@
         catch(PDOException $e) {
             echo $e->getMessage();
         }
-        
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $username = trim($_POST["name"]);
             $password = md5($_POST['password']);
-           
-               
+            
             $request = "SELECT id, username, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
             // echo $request;
             $stmt = $connect->prepare($request);
-            // echo $stmt->execute();
+            $stmt->execute();
+            // echo "5";
+            echo $stmt->execute();
+            if ($stmt > 0){
+                $msg = "Login successful!";
+                echo $msg;
+              $_SESSION['loggedin'] = $username;
+              header('location:home.php') ;
+            }
+            else{
+                 echo "incorrect";
+
+            }
             
             // $stmt = $connect->execute($request);
-            // $match = $stmt->fetchColumn();
         }
+        // echo $_SESSION['loggedin'];
     ?>
         
 <body>
     <h1>Login here</h1>
-        <p>Acess your amazing WeThinkCode memories <b>here</b> or go be part of the code army <a href="signup.php">here</a><br />
+        <p>Acess your amazing WeThinkCode memories <b>here</b> or go be part of the code army <a href="signup.php"><b>here</b></a><br />
         <p>Please login</p>
         <form action="" method="post">
             <label for="name">Username:</label>
             <input type="text" name="name" value="" required/>
             <label for="password">Password:</label>
-            <input type="password" name="password" value="" required autocomplete ="off" />
+            <input type="password" name="password" value="" required autocomplete ="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                 <br><br>
             <input type="submit" value="Login" />
         </form>

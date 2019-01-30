@@ -7,6 +7,10 @@
     <title>Cama-Home</title>
 </head>
 <body>
-    
+    <?php
+    session_start();
+        echo $_SESSION['loggedin'];
+    ?>
+    <p><a href="logout.php">logout</a></p>
 </body>
 </html>
