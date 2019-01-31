@@ -21,7 +21,6 @@
             Username: '.$name.'
             
             
-            
             Please click this link to activate your account:
             http://localhost:8080/cama-new/verification/verify.php?email='.$email.'&hash='.$hash.'';  
             

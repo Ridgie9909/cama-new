@@ -11,6 +11,7 @@
     session_start();
         echo $_SESSION['loggedin'];
     ?>
+    <p>Did you forget your password? Click<a href="forgot_password.php"><b> here</b></a> !</p>
     <p><a href="logout.php">logout</a></p>
 </body>
 </html>
