@@ -30,17 +30,15 @@
             // echo $request;
             $stmt = $connect->prepare($request);
             $stmt->execute();
-            // echo "5";
-            echo $stmt->execute();
-            if ($stmt > 0){
+            if ($stmt->rowCount() > 0){
                 $msg = "Login successful!";
                 echo $msg;
-              $_SESSION['loggedin'] = $username;
-              header('location:home.php') ;
+
+                $_SESSION['loggedin'] = $username;
+                header('location:home.php') ;
             }
             else{
-                 echo "incorrect";
-
+                echo "incorrect details, please try again!";
             }
             
             // $stmt = $connect->execute($request);
