@@ -57,5 +57,6 @@
                 <br><br>
             <input type="submit" value="Login" />
         </form>
+        <p><a href="e_pass.php"</p>
 </body>
 </html>       
