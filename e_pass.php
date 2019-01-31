@@ -5,12 +5,27 @@
 </head>
 <?php
     session_start();
-    $link = "http://localhost:8080/cama-new/forgot_password.php";
+    $link = "http://localhost:8080/cama-new/update_password.php";
     require './config/database.php';
-    try {
-        $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
-        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $to = $email;
+    
+        
+        try {
+            $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
+            $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $request = "SELECT email, active FROM users WHERE active='1'";
+            $stmt = $connect->prepare($request);
+            echo 5;
+            $stmt->execute();
+            // echo $stmt->rowCount();
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        if ($stmt->rowCount() > 0){
+            try {
+                $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
+                $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $to = $email;
                 $subject = 'Camagru password reset';
                 $message = 'Dear user,
                 
@@ -24,12 +39,17 @@
                 Camagru staff';  
                 
                 $headers = 'From:noreply@Camagru_staff.com' . "\r\n"; 
-                mail("ridgedube7@gmail.com", $subject, $message, $headers); 
-}
-    catch(PDOException $e) {
-        echo $e->getMessage();
-    }
-?>
+                mail($to, $subject, $message, $headers);
+            }
+            catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+        else{
+            
+        }
+    
+        ?>
 <body>
     
 </body>

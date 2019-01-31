@@ -27,7 +27,6 @@
             $password = md5($_POST['password']);
             
             $request = "SELECT id, username, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
-            // echo $request;
             $stmt = $connect->prepare($request);
             $stmt->execute();
             if ($stmt->rowCount() > 0){
@@ -57,6 +56,6 @@
                 <br><br>
             <input type="submit" value="Login" />
         </form>
-        <p><a href="e_pass.php"</p>
+        <p>incase you forgot your password click <a href="forgot_password.php">here</a></p>
 </body>
 </html>       
