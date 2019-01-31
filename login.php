@@ -38,7 +38,7 @@
                 header('location:home.php') ;
             }
             else{
-                echo "incorrect details, please try again!";
+                echo "incorrect details or check your emails to validate your account";
             }
             
             // $stmt = $connect->execute($request);

@@ -15,12 +15,11 @@
             $stmt = $connect->exec($query);
             $to = $email;
             $subject = 'Camagru verification';
-            $message = 'Thanks for signing up!
+            $message = 'Thanks for signing up '.$name.'!
             Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
             
             Username: '.$name.'
-            
-            
+
             Please click this link to activate your account:
             http://localhost:8080/cama-new/verification/verify.php?email='.$email.'&hash='.$hash.'';  
             
