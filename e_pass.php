@@ -8,13 +8,14 @@
     $link = "http://localhost:8080/cama-new/update_password.php";
     require './config/database.php';
     
+    $email = trim($_POST["email"]);
+
         
         try {
             $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $request = "SELECT email, active FROM users WHERE active='1'";
             $stmt = $connect->prepare($request);
-            echo 5;
             $stmt->execute();
             // echo $stmt->rowCount();
         }
@@ -25,6 +26,7 @@
             try {
                 $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
                 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo 51;
                 $to = $email;
                 $subject = 'Camagru password reset';
                 $message = 'Dear user,
@@ -46,7 +48,7 @@
             }
         }
         else{
-            
+            echo "bro you're not on the system or you can't spell";
         }
     
         ?>

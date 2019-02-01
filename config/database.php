@@ -1,6 +1,6 @@
 <?php
      define('dbhost', 'localhost');
      define('dbuser', 'root');
-     define('dbpass', '1234abcd');
+     define('dbpass', 'Megundube1');
      define('dbname', 'camagru_');
 ?>
