@@ -47,9 +47,7 @@
                 echo $e->getMessage();
             }
         }
-        else{
-            echo "bro you're not on the system or you can't spell";
-        }
+        
     
         ?>
 <body>
