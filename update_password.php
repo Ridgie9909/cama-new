@@ -25,6 +25,9 @@
         echo $e->getMessage();
     }
 ?>
+<?php
+public function changePassword()
+?>
 <body>
     <h1>Type in your new password</h1>
     <p>You have a chance to change your password on forget this one!</p>

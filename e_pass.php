@@ -26,13 +26,13 @@
             try {
                 $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
                 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo 51;
+                // echo 51;
                 $to = $email;
                 $subject = 'Camagru password reset';
                 $message = 'Dear user,
                 
                 
-                Recently a request was submitted to reset a password for your account. 
+                Recently a request was submitted to reset the password for your account. 
                 If this was a mistake, just ignore this email and nothing will happen.
                 To reset your password, visit the following link: '.$link.'
                 
@@ -53,6 +53,7 @@
     
         ?>
 <body>
-    
+    <h1>Processing... </h1>
+    <p>You can check your email for the reset link or go back to the login page <b><a href="login.php">here</a></b> and try to remember your old password</p>
 </body>
 </html>

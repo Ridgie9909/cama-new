@@ -9,7 +9,11 @@
 <body>
     <?php
     session_start();
-        echo $_SESSION['loggedin'];
+    if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false){
+        header("location: cama-new/login.php");
+        // exit;
+    }
+    echo $_SESSION['loggedin'];
     ?>
     <p>Did you forget your password? Click<a href="forgot_password.php"><b> here</b></a> !</p>
     <p><a href="logout.php">logout</a></p>
