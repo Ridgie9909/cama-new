@@ -11,6 +11,7 @@
         try {
             $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            #place insert query into an if statement.
             $query = "INSERT INTO users (username, password, email, hash) VALUES('$name', '$password', '$email', '$hash')";
             $stmt = $connect->exec($query);
             $to = $email;
