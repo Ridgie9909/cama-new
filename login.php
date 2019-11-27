@@ -8,6 +8,7 @@
    
 </head>
     <?php
+   
         session_start();
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             header("location: home.php");
@@ -46,7 +47,7 @@
         
 <body>
     <h1>Login here</h1>
-        <p>Acess your amazing WeThinkCode memories <b>here</b> or go be part of the code army <a href="signup.php"><b>here</b></a><br />
+        <p>Access your amazing WeThinkCode memories <b>here</b> or go be part of the code army <a href="signup.php"><b>here</b></a><br />
         <p>Please login</p>
         <form action="" method="post">
             <label for="name">Username:</label>

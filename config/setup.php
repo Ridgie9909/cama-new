@@ -25,7 +25,31 @@
             `active` INT( 1 ) NOT NULL DEFAULT '0'
             ) ENGINE = MYISAM ";
 
+        $pdo1 = "CREATE TABLE `Gallery` (
+            `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            `userid` INT(100) NOT NULL,
+            `username` VARCHAR(30),
+            `photo` MEDIUMTEXT NOT NULL,
+            `likes` MEDIUMINT NOT NULL DEFAULT '0'
+        )";
+
+        $pdo2 = "CREATE TABLE `images` (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            photo LONGBLOB NOT NULL,
+            userid VARCHAR(255) NOT NULL,
+            likes INT DEFAULT 0)";
+        
+        $pdo3 = "CREATE TABLE Comments (
+            `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            `photoid` INT(100) NOT NULL,
+            `username` VARCHAR(30) NOT NULL,
+            `comment` VARCHAR(300)
+        )";
+
         $conn->prepare($pdo)->execute();
+        $conn->prepare($pdo1)->execute();
+        $conn->prepare($pdo2)->execute();
+        $conn->prepare($pdo3)->exectute();
         // echo "done boi";
         }
         catch(PDOException $e){

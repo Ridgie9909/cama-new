@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<?php echo ('<script>window.location.href="../cama-new/login.php";</script>');    ?>
 <html>
 <head>
     <title>Document</title>
 </head>
 <?php
     session_start();
-    $link = "http://localhost:8080/cama-new/update_password.php";
+    $link = "http://localhost:3000/cama-new/update_password.php";
     require './config/database.php';
     
     $email = trim($_POST["email"]);
@@ -26,7 +27,7 @@
             try {
                 $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
                 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo 51;
+                
                 $to = $email;
                 $subject = 'Camagru password reset';
                 $message = 'Dear user,

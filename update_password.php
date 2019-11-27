@@ -7,9 +7,7 @@
 
     require './config/database.php';
     
-    if ($_POST['password'] === $_POST['cpassword']){
-        $password = md5($_POST['cpassword']);
-    }
+    
     try {
         $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,8 +15,15 @@
             echo "New password can't be the same as the old one";
         }
         else{
-            $request = "UPDATE users SET cpassword WHERE password";
+            if ($_POST['password'] === $_POST['cpassword'])
+            {
+            $password = md5($_POST['cpassword']);
+            $request = "UPDATE `users` SET `password`=$password, WHERE $id";
+            // $connect->prepare($request)->execute();
+            // echo ('<script>window.location.href="../cama-new/login.php";</script>');    
+
         }
+    }
 
     }
     catch(PDOException $e) {
