@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Reset password</title>
     <?php 
-        $femail = 'email';
+        // $femail = 'email';
         
     ?>
 </head>
@@ -28,7 +28,7 @@
     // }
 ?>
 <body>
-    <form method="post" action="e_pass.php">
+    <form method="post" action="change_password.php">
         <label for="email" >Email:</label>
             <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="example@example.com">
              <input  type="submit" name="Submit">

@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+
 // require './config/database.php';
     
     // $conn = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
@@ -34,20 +36,47 @@
 <?php
 
     require './config/database.php';
+    // include '../config/connection.php';
     
-    $password = $_POST['cpassword'];
-    $password = $_POST['password'];
+    // $password = $_POST['cpassword'];
+    // $password = $_POST['password'];
     $email = $_POST['email'];
     
-    try {
-        $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
-        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-        $something = "SELECT hash FROM users WHERE email = '".$_POST['email']."'";
-        $data = $connect->prepare($something)->execute();
     
+    
+    try {
+        $conn = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        
+        $stmt1 = "SELECT * FROM users WHERE email='$email'";
+        // $stmt1 = "UPDATE `users` SET `username`='something',`password`='bruh',`email`='this',`hash`='bruh',`active`='2' WHERE `email` = '$email'";
+
+
+
+        // $data = $conn->prepare($stmt);
+        $var = $conn->query($stmt1);
+        
+        // $data->bindParam(1, $email);
+
+
+
+        // echo $data;
+        // $data->execute();
+        
+        $row = $var->fetch(PDO::FETCH_ASSOC);
+        $hash = $row['hash'];
+        echo $row;
+        echo "what";
+
+
+        // $email = $_POST['email'];
+	    // $query = "SELECT * FROM users WHERE email=?";
+	    // $result = $conn->query($query);
+        // $row = $result->fetch(PDO::FETCH_ASSOC);
+        
+        // echo ('<script>window.location.href="../cama-new/login.php";</script>');    
+        // header("location: login.php");
 
     //     if (md5($_POST['cpassword']) === $_GET['password']){
     //         echo "New password can't be the same as the old one";
@@ -67,4 +96,5 @@
     catch(PDOException $e) {
         echo $e->getMessage();
     }
+
 ?>

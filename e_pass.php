@@ -18,7 +18,7 @@
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $request = "SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'";
             $stmt = $connect->prepare($request);
-            $stmt->execute();
+            $data = $stmt->execute();
             // echo $stmt->rowCount();
         }
         catch(PDOException $e){
@@ -27,7 +27,7 @@
         
     
         
-        if ($stmt->rowCount() > 0){
+        if ($data->rowCount() > 0){
             try {
                 $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
                 $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

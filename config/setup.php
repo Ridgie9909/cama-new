@@ -46,17 +46,25 @@
             `comment` VARCHAR(300)
         )";
 
+        $pdo4 = "CREATE TABLE IF NOT EXISTS `password_reset_request`( 
+            `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` int(10) unsigned NOT NULL,
+            `date_requested` datetime NOT NULL,
+            `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+            PRIMARY KEY (`id`))";
+
         $conn->prepare($pdo)->execute();
         $conn->prepare($pdo1)->execute();
         $conn->prepare($pdo2)->execute();
         $conn->prepare($pdo3)->exectute();
-        // echo "done boi";
+        $conn->prepare($pdo4)->execute();
+        
         }
         catch(PDOException $e){
             echo "Failed to connect: " . $e->getMessage() . " ";
         }
 
 
-$conn->prepare($pdo)->execute();
-    // echo ". Table successfuly created";
+
+    
 ?>
