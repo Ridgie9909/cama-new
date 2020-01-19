@@ -46,6 +46,7 @@
     ?>
         
 <body>
+    
     <h1>Login here</h1>
         <p>Access your amazing WeThinkCode memories <b>here</b> or go be part of the code army <a href="signup.php"><b>here</b></a><br />
         <p>Please login</p>
