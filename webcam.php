@@ -1,4 +1,7 @@
 <?PHP
+
+  include "header.php";
+  include "footer.php";
   if(isset($_POST['submit']))
   {
     $photo = $_POST['photo'];
@@ -6,10 +9,10 @@
     $pic = $_POST['img'];
     echo "<script type='text/javascript'>alert('$pic')</script>";
     try{
-      $con = new PDO("mysql:host=localhost;dbname=camagru_","root","password");
+      $con = new PDO("mysql:host=localhost;dbname=camagru_","root","qiniso123");
       $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      // $con->prepare()->exec("INSERT INTO `images`(photo, uploader) VALUES ($photo, $uploader)");
-      // print_r($photo);
+      $con->prepare()->exec("INSERT INTO `images`(photo, uploader) VALUES ($photo, $uploader)");
+      print_r($photo);
 
 
       // $photos="INSERT INTO images(photo, uploader) VALUES ($photo, $uploader)";
@@ -20,7 +23,7 @@
       echo "error".$e->getMessage();
   }
      $table = $con->prepare("INSERT INTO `images`(`id`, `photo`, `uploader`, `likes`) VALUES (photo,uploader)");
-    
+    # get user name for upploading
      $table->execute([$pic, 'DAVE']);
   }
 ?>
@@ -32,10 +35,9 @@
 <body>
 <div class ="nav">
   <ul>
-    <a class="home" href="register.php">Home</a>
+    <a class="home" href="home.php">Home</a>
     <a class="gallery" href="gallery.php">Gallery</a>
-    <a class="Pfile" href="Profile.php">Profile</a>
-    
+    <a class="Pfile" href="account.php">Profile</a>
     <a class="Logout" href="logout.php">Log Out</a>
     <a class="Forgotpass" href="forgot_password.php">Forgot-Password</a>
   </ul>

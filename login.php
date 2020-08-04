@@ -8,14 +8,16 @@
    
 </head>
     <?php
-   
+    // error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
         session_start();
-        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === True){
             header("location: home.php");
             exit;
         }
-        require_once './config/database.php';
         
+        require_once './config/database.php';
+
         try {
             $connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,12 +29,22 @@
             $username = trim($_POST["name"]);
             $password = md5($_POST['password']);
             
-            $request = "SELECT id, username, active FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
+            $request = "SELECT id, username, active, hash FROM users WHERE username='".$username."' AND password='".$password."' AND active='1'";
             $stmt = $connect->prepare($request);
             $stmt->execute();
+            $things = $stmt->fetch();
+            $_SESSION['hash'] = $things['id'];
+            $_SESSION['username'] = $things['username'];
+            // echo $things['id'];
+            // echo $things['username'];
             if ($stmt->rowCount() > 0){
                 $msg = "Login successful!";
                 echo $msg;
+                
+                echo "what a nightmare";
+                echo $row['id'];
+                
+
 
                 $_SESSION['loggedin'] = $username;
                 header('location:home.php') ;
@@ -40,8 +52,6 @@
             else{
                 echo "incorrect details or check your emails to validate your account";
             }
-            
-            // $stmt = $connect->execute($request);
         }
     ?>
         
@@ -60,4 +70,4 @@
         </form>
         <p>incase you forgot your password click <a href="forgot_password.php">here</a></p>
 </body>
-</html>       
+</html>  

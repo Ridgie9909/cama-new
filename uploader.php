@@ -69,3 +69,46 @@ $linkToSend = $verifyScript . '?uid=' . $userId . '&id=' . $passwordRequestId . 
 //Print out the email for the sake of this tutorial.
 echo $linkToSend;
 ?>
+```````````````
+
+<form action="" method="post" enctype="multipart/form-data">
+  <h3>Upload image</h3>
+
+  <div class="user-image mb-3 text-center">
+    <div style="width: 100px; height: 100px; overflow: hidden; background: #cccccc; margin: 0 auto">
+      <img src="..." class="figure-img img-fluid rounded" id="imgPlaceholder" alt="">
+    </div>
+  </div>
+
+  <div class="custom-file">
+    <input type="file" name="fileUpload" class="custom-file-input" id="chooseFile">
+    <label class="custom-file-label" for="chooseFile">Select file</label>
+  </div>
+  <?php
+  echo'<img src="'.$img.'">';
+  ?>
+  <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+    Upload File
+  </button>
+
+
+<?php
+
+$query = "SELECT img from artistlocation";
+
+try{
+    $db = new db();
+    $db = $db->connect(); 
+    $stmt = $db->query($sql);
+    $data = array();
+    while($result = $stmt->fetch(PDO::FETCH_OBJ))
+    {
+        $data[] = base64_encode($result['img']);
+    }
+   print_r ($data);
+}
+catch(PDOException $e){
+    echo '{"error": {"text": '.$e->getMessage().'}';
+} 
+
+?>
